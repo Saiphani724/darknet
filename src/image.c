@@ -12,6 +12,7 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
+char *fname;
 int windows = 0;
 
 float colors[6][3] = { {1,0,1}, {0,0,1},{0,1,1},{0,1,0},{1,1,0},{1,0,0} };
@@ -294,8 +295,9 @@ void draw_detections(image im, detection *dets, int num, float thresh, char **na
             float bot   = (b.y+b.h/2.)*im.h;
             
             FILE *fp;
+            
             fp = fopen("myoutput.txt", "a");
-            fprintf(fp, "%s %f %f %f %f\n",labelstr, left,right,top,bot);
+            fprintf(fp, "%s %s %f %f %f %f\n",*fname,labelstr, left,right,top,bot);
             
             fclose(fp);
             
@@ -1258,6 +1260,7 @@ image resize_image(image im, int w, int h)
 
 void test_resize(char *filename)
 {
+    fname = filename;
     image im = load_image(filename, 0,0, 3);
     float mag = mag_array(im.data, im.w*im.h*im.c);
     printf("L2 Norm: %f\n", mag);
