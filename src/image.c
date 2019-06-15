@@ -288,12 +288,14 @@ void draw_detections(image im, detection *dets, int num, float thresh, char **na
 
             
             
-            int left  = (b.x-b.w/2.)*im.w;
-            int right = (b.x+b.w/2.)*im.w;
-            int top   = (b.y-b.h/2.)*im.h;
-            int bot   = (b.y+b.h/2.)*im.h;
+            float left  = (b.x-b.w/2.)*im.w;
+            float right = (b.x+b.w/2.)*im.w;
+            float top   = (b.y-b.h/2.)*im.h;
+            float bot   = (b.y+b.h/2.)*im.h;
             
-            fp = fopen("myoutput.txt", "w+");
+            fp = fopen("myoutput.txt", "w");
+            fclose(fp);
+            fp = fopen("myoutput.txt", "a");
             fprintf(fp, "%s %f %f %f %f\n",labelstr, left,right,top,bot);
             
             fclose(fp);
