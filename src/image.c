@@ -283,7 +283,7 @@ void draw_detections(image im, detection *dets, int num, float thresh, char **na
             //printf("%f %f %f %f\n", b.x, b.y, b.w, b.h);
 //             fprintf(stderr, "%f %f %f %f\n", b.x, b.y, b.w, b.h);
             
-               FILE *fp;
+               
 
 
             
@@ -293,8 +293,7 @@ void draw_detections(image im, detection *dets, int num, float thresh, char **na
             float top   = (b.y-b.h/2.)*im.h;
             float bot   = (b.y+b.h/2.)*im.h;
             
-            fp = fopen("myoutput.txt", "w");
-            fclose(fp);
+            FILE *fp;
             fp = fopen("myoutput.txt", "a");
             fprintf(fp, "%s %f %f %f %f\n",labelstr, left,right,top,bot);
             
