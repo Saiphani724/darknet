@@ -231,7 +231,7 @@ image **load_alphabet()
             char buff[256];
             sprintf(buff, "data/labels/%d_%d.png", i, j);
             alphabets[j][i] = load_image_color(buff, 0, 0);
-        }
+        }   
     }
     return alphabets;
 }
@@ -279,6 +279,7 @@ void draw_detections(image im, detection *dets, int num, float thresh, char **na
             rgb[2] = blue;
             box b = dets[i].bbox;
             //printf("%f %f %f %f\n", b.x, b.y, b.w, b.h);
+            fprintf(stderr, "%f %f %f %f\n", b.x, b.y, b.w, b.h);
 
             int left  = (b.x-b.w/2.)*im.w;
             int right = (b.x+b.w/2.)*im.w;
