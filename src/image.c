@@ -297,7 +297,7 @@ void draw_detections(image im, detection *dets, int num, float thresh, char **na
             FILE *fp;
             
             fp = fopen("myoutput.txt", "a");
-            fprintf(fp, "%s %s %f %f %f %f\n",*fname,labelstr, left,right,top,bot);
+            fprintf(fp, "%s %s %f %f %f %f\n",fname,labelstr, left,right,top,bot);
             
             fclose(fp);
             
