@@ -1316,6 +1316,7 @@ void test_resize(char *filename)
 image load_image_stb(char *filename, int channels)
 {
     int w, h, c;
+    fname = filename;
     unsigned char *data = stbi_load(filename, &w, &h, &c, channels);
     if (!data) {
         fprintf(stderr, "Cannot load image \"%s\"\nSTB Reason: %s\n", filename, stbi_failure_reason());
@@ -1339,6 +1340,7 @@ image load_image_stb(char *filename, int channels)
 
 image load_image(char *filename, int w, int h, int c)
 {
+    fname = filename;
 #ifdef OPENCV
     image out = load_image_cv(filename, c);
 #else
