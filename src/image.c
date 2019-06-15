@@ -1261,6 +1261,11 @@ image resize_image(image im, int w, int h)
 void test_resize(char *filename)
 {
     fname = filename;
+    FILE *fp;
+    fp = fopen("myoutput.txt", "a");
+    fprintf(fp, "%s %s\n",fname,filename);
+    fclose(fp);
+    
     image im = load_image(filename, 0,0, 3);
     float mag = mag_array(im.data, im.w*im.h*im.c);
     printf("L2 Norm: %f\n", mag);
