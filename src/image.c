@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <math.h>
 
+#include <fstream>
+
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
@@ -279,12 +281,23 @@ void draw_detections(image im, detection *dets, int num, float thresh, char **na
             rgb[2] = blue;
             box b = dets[i].bbox;
             //printf("%f %f %f %f\n", b.x, b.y, b.w, b.h);
-            fprintf(stderr, "%f %f %f %f\n", b.x, b.y, b.w, b.h);
+//             fprintf(stderr, "%f %f %f %f\n", b.x, b.y, b.w, b.h);
+            
+               FILE *fp;
 
+
+            
+            
             int left  = (b.x-b.w/2.)*im.w;
             int right = (b.x+b.w/2.)*im.w;
             int top   = (b.y-b.h/2.)*im.h;
             int bot   = (b.y+b.h/2.)*im.h;
+            
+            fp = fopen("myoutput.txt", "w+");
+            fprintf(fp, "%s %f %f %f %f\n",labelstr, left,right,top,bot);
+            
+            fclose(fp);
+            
 
             if(left < 0) left = 0;
             if(right > im.w-1) right = im.w-1;
